@@ -34,4 +34,8 @@ public class SysConfig {
         }
         return serializerType;
     }
+
+    public static int serviceTimeOut(){
+        return Integer.parseInt(properties.getProperty("serviceTimeout"));
+    }
 }

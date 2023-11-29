@@ -21,7 +21,9 @@ public class RpcResponseMessageHandler extends SimpleChannelInboundHandler<RpcRe
         log.debug("RPC调用结果：{}", msg);
         Promise promise = PROMISES.remove(msg.getSequenceId());
         Object returnValue = msg.getReturnValue();
-        if (returnValue != null) {
+        Exception exception = msg.getExceptionValue();
+        if (exception == null) {
+            log.info("returnValue:", returnValue);
             promise.setSuccess(returnValue);
         } else {
             promise.setFailure(msg.getExceptionValue());

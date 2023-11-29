@@ -97,7 +97,7 @@ public class RpcChannelManger {
             if (promise.isSuccess()) {
                 return promise.getNow();
             }
-            return new RuntimeException(promise.cause());
+            throw new RuntimeException(promise.cause());
         });
         return (T) obj;
     }
